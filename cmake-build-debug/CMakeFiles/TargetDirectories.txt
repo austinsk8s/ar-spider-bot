@@ -1,0 +1,3 @@
+/Users/austinsk8s/projects/spider/SpiderRobotStarterKit/SpiderLinuxApplication/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/austinsk8s/projects/spider/SpiderRobotStarterKit/SpiderLinuxApplication/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/austinsk8s/projects/spider/SpiderRobotStarterKit/SpiderLinuxApplication/cmake-build-debug/CMakeFiles/SpiderLinuxApplication.dir

@@ -1,0 +1,49 @@
+cmake_minimum_required(VERSION 3.9)
+project(SpiderLinuxApplication)
+
+set(CMAKE_CXX_STANDARD 11)
+
+add_executable(SpiderLinuxApplication
+        bt/inc/bluetooth/a2mp.h
+        bt/inc/bluetooth/bluetooth.h
+        bt/inc/bluetooth/bnep.h
+        bt/inc/bluetooth/cmtp.h
+        bt/inc/bluetooth/hci.h
+        bt/inc/bluetooth/hci_lib.h
+        bt/inc/bluetooth/hidp.h
+        bt/inc/bluetooth/l2cap.h
+        bt/inc/bluetooth/mgmt.h
+        bt/inc/bluetooth/rfcomm.h
+        bt/inc/bluetooth/sco.h
+        bt/inc/bluetooth/sdp.h
+        bt/inc/bluetooth/sdp_lib.h
+        bt/inc/bluetooth/uuid.h
+        ADC.cpp
+        ADC.h
+        ADCTest.cpp
+        BtSPP.cpp
+        BtSPP.h
+        BtSppCommand.cpp
+        BtSppCommand.h
+        CMotor.cpp
+        CMotor.h
+        CSpider.cpp
+        CSpider.h
+        CSpiderLeg.cpp
+        CSpiderLeg.h
+        hps_0.h
+        Main.cpp
+        ManualControl.cpp
+        mmap.cpp
+        mmap.h
+        PIO_BUTTON.cpp
+        PIO_BUTTON.h
+        PIO_LED.cpp
+        PIO_LED.h
+        Project.cpp
+        Queue.cpp
+        Queue.h
+        QueueCommand.cpp
+        QueueCommand.h
+        terasic_os.cpp
+        terasic_os.h)
