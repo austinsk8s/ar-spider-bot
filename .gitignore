@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+# Intelij
+.idea
+.metadata
+.settings
