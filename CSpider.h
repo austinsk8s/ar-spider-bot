@@ -28,6 +28,12 @@ protected:
 		TRIPOD2,	//LF RM LB
 		TRIPOD_NUM
 	}TRIPOD_ID;
+	
+	typedef enum{
+		BIPOD1,		//RF LB
+		BIPOD2,		//LF RB
+		BIPOD_NUM
+	}BIPOD_ID;
 
 	CSpiderLeg *m_szLeg[LEG_NUM];
 	static bool m_bDebugDump;
@@ -44,9 +50,11 @@ public:
 	uint32_t ReadyTime(void);
 	void SetFootY(uint8_t Leg,float Angle);
 	void MoveTripod(TRIPOD_ID Tripod,CSpiderLeg::JOINT_ID Joint,float AngleF,float AngleM,float AngleB);
+	void MoveBipod(BIPOD_ID Bipod,CSpiderLeg::JOINT_ID Joint,float AngleF,float AngleB);
 	//Action
 	bool Init(void);
 	void Reset(void);
+	void LiftMidLegs(void);
 	bool Standup(void);
 	void TiltRight(void);
 	void TiltLeft(void);
@@ -58,6 +66,8 @@ public:
 	void BodyNone(void);
 	void BodyUpDown(uint8_t Repeat_Num);
 	void MoveForward(uint8_t Repeat_Num);
+	void MoveForwardDynamic(uint8_t Repeat_Num);
+	void MoveForwardBipod(uint8_t Repeat_Num);
 	void MoveBackward(uint8_t Repeat_Num);
 	void MoveParallelR(uint8_t Repeat_Num);
 	void MoveParallelL(uint8_t Repeat_Num);

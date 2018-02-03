@@ -2,7 +2,7 @@
 SPIDER = spider
 CONTROLLER = Controller
 ADC = ADC
-ES_FINAL_PROJECT = CustomSpiderProject
+PROJECT = Project
 
 # add 'export SOCEDS_DEST_ROOT=~/altera/14.0/embedded' in /etc/profile
 #
@@ -17,7 +17,7 @@ LDFLAGS =  -g -Wall  -lstdc++ -L./bt/lib -lbluetooth -lrt -lpthread
 CC = $(CROSS_COMPILE)g++
 ARCH= arm
 
-all: $(SPIDER) $(CONTROLLER) $(ADC) $(CUSTOM_SPIDER_PROJECT)
+all: $(SPIDER) $(CONTROLLER) $(ADC) $(PROJECT)
 
 controller:
 
@@ -30,7 +30,7 @@ $(CONTROLLER): ManualControl.o CSpider.o CSpiderLeg.o CMotor.o terasic_os.o mmap
 $(ADC): ADCTest.o ADC.o CSpider.o CSpiderLeg.o CMotor.o terasic_os.o mmap.o BtSppCommand.o BtSPP.o  Queue.o QueueCommand.o PIO_LED.o PIO_BUTTON.o
 	$(CC) $(LDFLAGS)   $^ -o $@
 
-$(CUSTOM_SPIDER_PROJECT): Project.o ADC.o CSpider.o CSpiderLeg.o CMotor.o terasic_os.o mmap.o BtSppCommand.o BtSPP.o  Queue.o QueueCommand.o PIO_LED.o PIO_BUTTON.o
+$(PROJECT): Project.o ADC.o CSpider.o CSpiderLeg.o CMotor.o terasic_os.o mmap.o BtSppCommand.o BtSPP.o  Queue.o QueueCommand.o PIO_LED.o PIO_BUTTON.o
 	$(CC) $(LDFLAGS)   $^ -o $@
 
 %.o : %.cpp
@@ -38,4 +38,4 @@ $(CUSTOM_SPIDER_PROJECT): Project.o ADC.o CSpider.o CSpiderLeg.o CMotor.o terasi
 
 .PHONY: clean
 clean:
-	rm -f $(SPIDER) $(CONTROLLER) $(ADC) $(CUSTOM_SPIDER_PROJECT)  *.a *.o *~
+	rm -f $(SPIDER) $(CONTROLLER) $(ADC) $(PROJECT)  *.a *.o *~

@@ -26,6 +26,9 @@ int main(int argc, char *argv[]){
 
   // Spider class
   CSpider Spider;
+  bool bSleep = false;
+    CPIO_LED LED_PIO;
+    CPIO_BUTTON BUTTON_PIO;
 
 	printf("Spider Init & Standup\r\n");
 	if (!Spider.Init()){
@@ -41,6 +44,16 @@ int main(int argc, char *argv[]){
   // Uncomment to use the ADC class for reading IR sensor
   // ADC adc;
 
-
+	while(1){
+		if(BUTTON_PIO.GetBUTTON()==0x2)
+			{
+					Spider.MoveForwardBipod(5);
+			}
+			else if (BUTTON_PIO.GetBUTTON()==0x1)
+			{
+					Spider.LiftMidLegs();
+			}
+	}
+	
 	return 0;
 }
