@@ -47,11 +47,14 @@ int main(int argc, char *argv[]){
 	while(1){
 		if(BUTTON_PIO.GetBUTTON()==0x2)
 			{
-					Spider.MoveForwardBipod(5);
+				Spider.MoveForward(5);
+				Spider.MoveForwardDynamic(5);
 			}
 			else if (BUTTON_PIO.GetBUTTON()==0x1)
 			{
-					Spider.LiftMidLegs();
+				Spider.LiftMidLegs();
+				Spider.MoveForwardBipod(5);
+				Spider.MoveForwardBipodDynamic(5);
 			}
 	}
 	
