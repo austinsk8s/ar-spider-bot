@@ -48,7 +48,6 @@ public:
 //	bool WaitReady(float fTimeoutSecond);
 	bool WaitReady(uint32_t Timeout);
 	uint32_t ReadyTime(void);
-	uint32_t ReadyHalfTime(void);
 	void SetFootY(uint8_t Leg,float Angle);
 	void MoveTripod(TRIPOD_ID Tripod,CSpiderLeg::JOINT_ID Joint,float AngleF,float AngleM,float AngleB);
 	void MoveBipod(BIPOD_ID Bipod,CSpiderLeg::JOINT_ID Joint,float AngleF,float AngleB);
@@ -67,6 +66,7 @@ public:
 	void BodyNone(void);
 	void BodyUpDown(uint8_t Repeat_Num);
 	void MoveForward(uint8_t Repeat_Num);
+	void MoveForwardStatic(uint8_t Repeat_Num);
 	void MoveForwardDynamic(uint8_t Repeat_Num);
 	void MoveForwardBipod(uint8_t Repeat_Num);
 	void MoveForwardBipodDynamic(uint8_t Repeat_Num);

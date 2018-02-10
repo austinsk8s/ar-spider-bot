@@ -48,13 +48,18 @@ int main(int argc, char *argv[]){
 		if(BUTTON_PIO.GetBUTTON()==0x2)
 			{
 				Spider.MoveForward(5);
+				Spider.Reset();
 				Spider.MoveForwardDynamic(5);
+				Spider.Reset();
 			}
 			else if (BUTTON_PIO.GetBUTTON()==0x1)
 			{
-				Spider.LiftMidLegs();
+				Spider.SetSpeed(10);
 				Spider.MoveForwardBipod(5);
-				Spider.MoveForwardBipodDynamic(5);
+				Spider.Reset();
+				Spider.SetSpeed(100);
+				Spider.MoveForwardBipod(5);
+				Spider.Reset();
 			}
 	}
 	
