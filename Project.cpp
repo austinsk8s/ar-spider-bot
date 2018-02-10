@@ -47,16 +47,22 @@ int main(int argc, char *argv[]){
 	while(1){
 		if(BUTTON_PIO.GetBUTTON()==0x2)
 			{
+				// 6 leg static
+				Spider.SetSpeed(10);
 				Spider.MoveForward(5);
 				Spider.Reset();
+				// 6 leg dynamic
+				Spider.SetSpeed(100);
 				Spider.MoveForwardDynamic(5);
 				Spider.Reset();
 			}
 			else if (BUTTON_PIO.GetBUTTON()==0x1)
 			{
+				// 4 leg static
 				Spider.SetSpeed(10);
 				Spider.MoveForwardBipod(5);
 				Spider.Reset();
+				// 4 leg dynamic
 				Spider.SetSpeed(100);
 				Spider.MoveForwardBipod(5);
 				Spider.Reset();

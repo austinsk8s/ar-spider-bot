@@ -78,9 +78,6 @@ void CSpider::LiftMidLegs(void)
 	m_szLeg[LEG_LB]->MoveJoint(CSpiderLeg::Hip,HipB_Base+10);
 	m_szLeg[LEG_RM]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base+40);
 	m_szLeg[LEG_LM]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base+40);
-	
-	m_szLeg[LEG_RM]->MoveJoint(CSpiderLeg::Ankle,Ankle_Extend);
-	m_szLeg[LEG_LM]->MoveJoint(CSpiderLeg::Ankle,Ankle_Extend);
 }
 
 void CSpider::Sleep(void)
@@ -234,41 +231,6 @@ void CSpider::MoveForwardBipod(uint8_t Repeat_Num)
 	m_bAbort = false;
 }
 
-
-void CSpider::MoveForwardBipodDynamic(uint8_t Repeat_Num)
-{
-	LiftMidLegs();
-	sleep(2);
-	SetSpeed(20);
-	if (m_bDebugDump)
-	  printf("MoveForward \n");
-	int num;
-	for(num=0;num<Repeat_Num && m_bAbort!= true;num++)
-	{
-		m_szLeg[LEG_RF]->MoveJoint(CSpiderLeg::Knee,Knee_Up_Base+10);
-		m_szLeg[LEG_LF]->MoveJoint(CSpiderLeg::Knee,Knee_Up_Base+10);
-		m_szLeg[LEG_RF]->MoveJoint(CSpiderLeg::Hip,HipF_Base+20);
-		m_szLeg[LEG_LF]->MoveJoint(CSpiderLeg::Hip,HipF_Base+20);
-		m_szLeg[LEG_RB]->MoveJoint(CSpiderLeg::Hip,HipB_Base-20);
-		m_szLeg[LEG_LB]->MoveJoint(CSpiderLeg::Hip,HipB_Base-20);
-		WaitReady(ReadyTime());
-		m_szLeg[LEG_RF]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base);
-		m_szLeg[LEG_LF]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base);
-		
-		m_szLeg[LEG_LB]->MoveJoint(CSpiderLeg::Knee,Knee_Up_Base+10);
-		m_szLeg[LEG_RB]->MoveJoint(CSpiderLeg::Knee,Knee_Up_Base+10);
-		m_szLeg[LEG_RB]->MoveJoint(CSpiderLeg::Hip,HipB_Base+20);
-		m_szLeg[LEG_LB]->MoveJoint(CSpiderLeg::Hip,HipB_Base+20);
-		m_szLeg[LEG_RF]->MoveJoint(CSpiderLeg::Hip,HipF_Base-20);
-		m_szLeg[LEG_LF]->MoveJoint(CSpiderLeg::Hip,HipF_Base-20);
-		WaitReady(ReadyTime());
-		m_szLeg[LEG_RB]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base);
-		m_szLeg[LEG_LB]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base);
-	}
-	SetSpeed(50);
-	m_bAbort = false;
-}
-
 void CSpider::MoveForwardDynamic(uint8_t Repeat_Num)
 {
 	if (m_bDebugDump)
@@ -276,23 +238,66 @@ void CSpider::MoveForwardDynamic(uint8_t Repeat_Num)
 	int num;
 	for(num=0;num<Repeat_Num && m_bAbort!= true;num++)
 	{
-		// make four legs go
-		// then make middle legs go
-		// repeat
-		MoveTripod(TRIPOD1,CSpiderLeg::Knee,Knee_Up_Base,Knee_Up_Base,Knee_Up_Base);
+		
+		// front legs
+		m_szLeg[LEG_RF]->MoveJoint(CSpiderLeg::Knee,Knee_Up_Base);
+		m_szLeg[LEG_LF]->MoveJoint(CSpiderLeg::Knee,Knee_Up_Base);
+		
+		// back legs
+		m_szLeg[LEG_RB]->MoveJoint(CSpiderLeg::Knee,Knee_Up_Base);
+		m_szLeg[LEG_LB]->MoveJoint(CSpiderLeg::Knee,Knee_Up_Base);
+		
 		WaitReady(ReadyTime());
-		MoveTripod(TRIPOD1,CSpiderLeg::Hip,HipF_Base+20,HipM_Base+20,HipB_Base+20);
-		MoveTripod(TRIPOD2,CSpiderLeg::Hip,HipF_Base-20,HipM_Base-20,HipB_Base-20);
+		
+		// front legs
+		m_szLeg[LEG_RF]->MoveJoint(CSpiderLeg::Hip,HipF_Base+30);
+		m_szLeg[LEG_LF]->MoveJoint(CSpiderLeg::Hip,HipF_Base+30);
+		
+		// back legs
+		m_szLeg[LEG_RB]->MoveJoint(CSpiderLeg::Hip,HipB_Base+30);
+		m_szLeg[LEG_LB]->MoveJoint(CSpiderLeg::Hip,HipB_Base+30);
+		
 		WaitReady(ReadyTime());
-		MoveTripod(TRIPOD1,CSpiderLeg::Knee,Knee_Down_Base,Knee_Down_Base,Knee_Down_Base);
+		
+		// front legs
+		m_szLeg[LEG_RF]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base);
+		m_szLeg[LEG_LF]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base);
+		
+		// back legs
+		m_szLeg[LEG_RB]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base);
+		m_szLeg[LEG_LB]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base);
+		
 		WaitReady(ReadyTime());
-		MoveTripod(TRIPOD2,CSpiderLeg::Knee,Knee_Up_Base,Knee_Up_Base,Knee_Up_Base);
+		
+		// front legs
+		m_szLeg[LEG_RF]->MoveJoint(CSpiderLeg::Hip,HipF_Base-30);
+		m_szLeg[LEG_LF]->MoveJoint(CSpiderLeg::Hip,HipF_Base-30);
+				
+	    // back legs
+		m_szLeg[LEG_RB]->MoveJoint(CSpiderLeg::Hip,HipB_Base-30);
+		m_szLeg[LEG_LB]->MoveJoint(CSpiderLeg::Hip,HipB_Base-30);
+				
+		// middle legs
+		m_szLeg[LEG_RM]->MoveJoint(CSpiderLeg::Knee,Knee_Up_Base);
+		m_szLeg[LEG_LM]->MoveJoint(CSpiderLeg::Knee,Knee_Up_Base);
+		
 		WaitReady(ReadyTime());
-		MoveTripod(TRIPOD1,CSpiderLeg::Hip,HipF_Base-20,HipM_Base-20,HipB_Base-20);
-		MoveTripod(TRIPOD2,CSpiderLeg::Hip,HipF_Base+20,HipM_Base+20,HipB_Base+20);
+		
+		m_szLeg[LEG_RM]->MoveJoint(CSpiderLeg::Hip,HipM_Base+30);
+		m_szLeg[LEG_LM]->MoveJoint(CSpiderLeg::Hip,HipM_Base+30);
+		
 		WaitReady(ReadyTime());
-		MoveTripod(TRIPOD2,CSpiderLeg::Knee,Knee_Down_Base,Knee_Down_Base,Knee_Down_Base);
+		
+		m_szLeg[LEG_RM]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base);
+		m_szLeg[LEG_LM]->MoveJoint(CSpiderLeg::Knee,Knee_Down_Base);
+		
 		WaitReady(ReadyTime());
+		
+		m_szLeg[LEG_RM]->MoveJoint(CSpiderLeg::Hip,HipM_Base-30);
+		m_szLeg[LEG_LM]->MoveJoint(CSpiderLeg::Hip,HipM_Base-30);
+		
+		WaitReady(ReadyTime());
+		
 	}
 	m_bAbort = false;
 
